@@ -1,3 +1,4 @@
+//Hanna Mendoza y Juan Cruz Peri
 let imagen=[];
 let estado=0;
 let escobi;
@@ -69,3 +70,4 @@ function mousePressed() {
       estado = 3;
   }
 }
+
