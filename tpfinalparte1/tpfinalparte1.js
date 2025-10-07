@@ -39,7 +39,7 @@ image( imagen[2], 0,0);
 
 function mousePressed() {
   if (estado===0) {
-    if (overmouse(376, 184, 161, 42)) {
+    if (overMouse(376, 184, 161, 42)) {
       estado=1;
     } else if (overMouse(376, 266, 161, 42)) {
       estado=2;
@@ -68,3 +68,4 @@ function fondo(imagen, texto, posX, posY, posXB, posYB, tamXB, tamYB, textoB) {
   text(texto, posX, posY, width-tamXB, height-tamYB);
   botonilli(posXB, posYB, tamXB, tamYB, textoB);
 }
+
