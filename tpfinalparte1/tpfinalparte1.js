@@ -1,7 +1,11 @@
 let imagen=[];
 let estado=0;
-let frases=['Aguante Processing!', 'el 11 de septiembre entregan', 'ponganse las pilas', 'queda poco tiempo'];
+let escobi;
+let creditos;
+let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede dejar su cuerpo y habitar en animales, personas e incluso el viento. Sueña con experimentar el amor humano, pero su familia se lo prohíbe ya que pone en riesgo sus poderes.', 'Una noche de primavera, Cecy encuentra la oportunidad de vivir lo prohibido. Descubre a Ann, una joven del pueblo, a través de ella, podría experimentar lo que significa amar.', 'Cecy se queda sola y triste. Comprende que nunca podrá conocer el amor humano.', 'Dentro del cuerpo de Ann, Cecy conoce a Tom, un joven que trabaja en la granja. Ann lo ignora, pero Cecy se enamora de él.'];
 function preload() {
+  escobi = loadImage ('data/escobi.png');
+  creditos = loadImage('data/creditos.png');
   for (let i=0; i<14; i++) {
     imagen[i]=loadImage('data/'+i+'.png');
   }
@@ -9,32 +13,42 @@ function preload() {
 
 function setup() {
   createCanvas(640, 480);
+  noCursor();
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(20);
   for (let i=0; i<14; i++) {
-    imagen[i].resize(640, 480); 
+    imagen[i].resize(640, 480);
   }
-  textSize(24);
 }
 
 
 function draw() {
-  //function fondo(imagen, texto, posX, posY, posXB, posYB, tamXB, tamYB, textoB) {
-  //image(imagen, 0, 0);
-  //fill(255);
-  //text(texto, posX, posY, width-tamXB, height-tamYB);
-  //botonilli(posXB, posYB, tamXB, tamYB, textoB);
 
   if (estado===0) {
-image( imagen[0], 0,0);
-
+    image( imagen[0], 0, 0);
   }
 
   if (estado===1) {
-image( imagen[1], 0,0);
+    image( imagen[1], 0, 0);
+    push();
+    noStroke();
+    fill(240, 206, 228, 180);
+    rect (15, 305, 610, 150, 20);
+    fill(70, 30, 56);
+    text(frases[0], 20, 280, 600, 200);
+    pop();
+    Botonavanzar(545, 410, 100, 50, 20, 'Avanzar');
   }
 
   if (estado===2) {
-image( imagen[2], 0,0);
+    image( creditos, 0, 0);
   }
+
+  if (estado===3) {
+    image( imagen [2], 0, 0);
+  }
+  image (escobi, mouseX-10, mouseY-10, 50, 50);
 }
 
 function mousePressed() {
@@ -45,27 +59,13 @@ function mousePressed() {
       estado=2;
     }
   }
-}
-function botonilli(posX, posY, tamX, tamY, textoB) { // una función para dibujar zonas rectangulares
-  if (overMouse(posX, posY, tamX, tamY)) {
-    fill(255, 0, 255);
-  } else {
-    fill(200, 120, 0, 100);
+  if (estado ===2) {
+    if (overMouse(232, 362, 174, 42)) {
+      estado=0;
+    }
   }
-  rect(posX, posY, tamX, tamY, tamY/4);
-  fill(100, 255, 0);
-  textAlign(CENTER, CENTER);
-  text(textoB, posX+tamX/2, posY+tamY/2);
+  if (estado === 1) {
+    if (overMouse(545, 410, 100, 50))
+      estado = 3;
+  }
 }
-
-function overMouse(posX, posY, tamX, tamY) {
-  return mouseX>posX && mouseX<posX+tamX && mouseY>posY && mouseY<posY+tamY;
-}
-
-function fondo(imagen, texto, posX, posY, posXB, posYB, tamXB, tamYB, textoB) {
-  image(imagen, 0, 0);
-  fill(255);
-  text(texto, posX, posY, width-tamXB, height-tamYB);
-  botonilli(posXB, posYB, tamXB, tamYB, textoB);
-}
-
