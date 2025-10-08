@@ -2,6 +2,7 @@ let imagen=[];
 let estado=0;
 let fondo;
 let magic;
+let sonando;
 let escobi, creditos;
 let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede dejar su cuerpo y habitar en animales, personas e incluso el viento. Sueña con experimentar el amor humano, pero su familia se lo prohíbe ya que pone en riesgo sus poderes.', 'Una noche de primavera, Cecy encuentra la oportunidad de vivir lo prohibido. Descubre a Ann, una joven del pueblo, a través de ella, podría experimentar lo que significa amar.', 'Cecy se queda sola y triste. Comprende que nunca podrá conocer el amor humano.', 'Dentro del cuerpo de Ann, Cecy conoce a Tom, un joven que trabaja en la granja. Ann lo ignora, pero Cecy se enamora de él.',
 'Tom nota a Ann diferente, por lo que decide invitarla a un baile. Cecy estalla de felicidad, pero Ann no quiere ir.'];
@@ -21,9 +22,7 @@ function setup() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
-  fondo.amp(0.4);
-  fondo.loop();
-  magic = false;
+  sonando = false;
   
   for (let i=0; i<15; i++) {
     imagen[i].resize(640, 480);
@@ -115,6 +114,13 @@ function draw() {
 }
 
 function mousePressed() {
+  if (!sonando) { // si NO está sonando (sonando ===false)
+    fondo.amp(0.1); // volumen
+    fondo.play(); // se reproduce 
+    sonando = true; // cambia la variable y evita que se repita ya que sonando pasa a true
+  }
+  
+  
   if (estado===0) {
     if (overMouse(376, 184, 161, 42)) {
       estado=1;
@@ -171,5 +177,3 @@ function mousePressed() {
   }
   
 }
-
-
