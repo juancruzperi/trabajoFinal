@@ -8,7 +8,7 @@ let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede
 function preload() {
   escobi = loadImage ('data/escobi.png');
   creditos = loadImage('data/creditos.png');
-  fondo = loadSound('data/Magical_Mystery.mp3');
+  fondo = loadSound('data/magicalFondo.mp3');
   magic = loadSound('data/magicSound.mp3');
   for (let i=0; i<15; i++) {
     imagen[i]=loadImage('data/'+i+'.png');
@@ -171,4 +171,5 @@ function mousePressed() {
   }
   
 }
+
 
