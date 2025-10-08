@@ -1,16 +1,19 @@
 let imagen=[];
 let estado=0;
-let fondo;
-let magic;
-let sonando;
-let escobi, creditos;
+let cambio=1;
+let fondo, magic;
+let escobi, creditos, sonidon, sonidoff;
 let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede dejar su cuerpo y habitar en animales, personas e incluso el viento. Sueña con experimentar el amor humano, pero su familia se lo prohíbe ya que pone en riesgo sus poderes.', 'Una noche de primavera, Cecy encuentra la oportunidad de vivir lo prohibido. Descubre a Ann, una joven del pueblo, a través de ella, podría experimentar lo que significa amar.', 'Cecy se queda sola y triste. Comprende que nunca podrá conocer el amor humano.', 'Dentro del cuerpo de Ann, Cecy conoce a Tom, un joven que trabaja en la granja. Ann lo ignora, pero Cecy se enamora de él.',
-'Tom nota a Ann diferente, por lo que decide invitarla a un baile. Cecy estalla de felicidad, pero Ann no quiere ir.'];
+  'Tom nota a Ann diferente, por lo que decide invitarla a un baile. Cecy estalla de felicidad, pero Ann no quiere ir.', 'Cecy se enoja porque Ann no quiere cumplirle el sue;o y jura venganza'];
 function preload() {
   escobi = loadImage ('data/escobi.png');
   creditos = loadImage('data/creditos.png');
+  sonidon = loadImage('data/sonidon.png');
+  sonidoff = loadImage('data/sonidoff.png');
+
   fondo = loadSound('data/magicalFondo.mp3');
   magic = loadSound('data/magicSound.mp3');
+
   for (let i=0; i<15; i++) {
     imagen[i]=loadImage('data/'+i+'.png');
   }
@@ -22,8 +25,7 @@ function setup() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
-  sonando = false;
-  
+
   for (let i=0; i<15; i++) {
     imagen[i].resize(640, 480);
   }
@@ -54,7 +56,7 @@ function draw() {
 
   if (estado===4) { // Primera decision, Cecy llorando
     fondo1boton(imagen[3], 15, 350, 610, 60, 20, frases[2], 600, 200)
-    Boton(100, 420, 220, 50, 20, 'Aceptarlo');
+      Boton(100, 420, 220, 50, 20, 'Aceptarlo');
     Boton(340, 420, 200, 50, 20, 'Arriesgarse igualmente'); //lo agregue recien
   }
 
@@ -65,7 +67,7 @@ function draw() {
 
   if (estado===5) { // Conocemos a Tom
     fondo1boton(imagen[4], 15, 360, 610, 60, 20, frases[3], 600, 200)
-    Boton(width/2-50, 425, 100, 50, 20, 'Avanzar');
+      Boton(width/2-50, 425, 100, 50, 20, 'Avanzar');
   }
 
   if (estado===6) { // Tom la nota distinta a Ann
@@ -75,7 +77,8 @@ function draw() {
   }
 
   if (estado===7) { // Cecy y Ann enojadas porque no quiso ir al baile
-    image( imagen [6], 0, 0);
+    fondo1boton(imagen[6], 15, 360, 610, 60, 20, frases[5], 600, 200)
+      Boton(width/2-105, 425, 210, 50, 20, 'Volver al inicio');
   }
 
   if (estado===8) { // Conmo comportarse en el baile?
@@ -109,71 +112,112 @@ function draw() {
   if (estado===15) { // Cecy renuncia al amor
     image( imagen [14], 0, 0);
   }
-
+  image (sonidon, 0, 0, 40, 40);
   image (escobi, mouseX-10, mouseY-10, 50, 50);
 }
 
 function mousePressed() {
-  if (!sonando) { // si NO está sonando (sonando ===false)
-    fondo.amp(0.1); // volumen
-    fondo.play(); // se reproduce 
-    sonando = true; // cambia la variable y evita que se repita ya que sonando pasa a true
+
+  //mecanismo de sacar y poner sonido de fondo
+  if (overMouse(0, 0, 40, 40)) {
+    cambio ++;
   }
-  
-  
+  if (overMouse(0, 0, 40, 40) && cambio %2===0) { //si esta sobre el boton sonido y ademas es par
+    fondo.amp(0.1); 
+    fondo.play();
+    image (sonidoff, 0, 0, 40, 40);// no se por que esta no anda
+  } else if (overMouse(0, 0, 40, 40)){ //tiene que estar sobre boton sonido
+    fondo.stop();
+  }
+
+
+
   if (estado===0) {
     if (overMouse(376, 184, 161, 42)) {
       estado=1;
+      magic.amp(0.3);
+      magic.play();
     } else if (overMouse(376, 266, 161, 42)) {
       estado=2;
+      magic.amp(0.3);
+      magic.play();
     }
   }
 
   if (estado ===2) {
     if (overMouse(232, 362, 174, 42)) {
       estado=0;
+      magic.amp(0.3);
+      magic.play();
     }
   }
   if (estado === 1) {
     if (overMouse(width/2-50, 425, 100, 50)) {
       estado = 3;
+      magic.amp(0.3);
+      magic.play();
     }
   }
 
   if (estado === 3) {
     if (overMouse(20, 410, 220, 50)) {
       estado = 4;
+      magic.amp(0.3);
+      magic.play();
     } else if (overMouse(420, 410, 200, 50)) {
       estado = 5;
+      magic.amp(0.3);
+      magic.play();
     }
   }
 
   if (estado === 4) {
     if (overMouse(100, 420, 220, 50)) {
       estado = 60;
+      magic.amp(0.3);
+      magic.play();
     } else if (overMouse(340, 420, 200, 50)) {
       estado = 5;
+      magic.amp(0.3);
+      magic.play();
     }
   }
 
   if (estado === 60) {
     if (overMouse(420, 420, 210, 50)) {
       estado = 0;
+      magic.amp(0.3);
+      magic.play();
     }
   }
-  
-    if (estado === 5) {
+
+  if (estado === 5) {
     if (overMouse(width/2-50, 425, 100, 50)) {
       estado = 6;
+      magic.amp(0.3);
+      magic.play();
     }
   }
-  
+
   if (estado === 6) {
     if (overMouse(15, 420, 280, 50)) {
       estado = 7;
+      magic.amp(0.3);
+      magic.play();
     } else if (overMouse(415, 420, 210, 50)) {
       estado = 8;
+      magic.amp(0.3);
+      magic.play();
     }
   }
+  
+    if (estado === 7) {
+    if (overMouse(width/2-50, 425, 100, 50)) {
+      estado = 0;
+      magic.amp(0.3);
+      magic.play();
+    }
+  }
+  
   
 }
