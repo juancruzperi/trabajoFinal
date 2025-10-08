@@ -21,8 +21,8 @@ function setup() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
-  magic.amp(0.1);
-  magic.loop();
+  fondo.amp(0.4);
+  fondo.loop();
   magic = false;
   
   for (let i=0; i<15; i++) {
@@ -171,3 +171,4 @@ function mousePressed() {
   }
   
 }
+
