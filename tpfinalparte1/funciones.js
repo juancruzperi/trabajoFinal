@@ -4,7 +4,7 @@ function overMouse(px, py, tamx, tamy) {
 
 function fondo1boton(imagen, pxt, pyt, tamx, tamy, radio, texto, anchoc, altoc) {
   image(imagen, 0, 0);
-  fill(240, 206, 228, 160);
+  fill(240, 206, 228, 140);
   rect (pxt, pyt, tamx, tamy, radio);
   fill(70, 30, 56);
   textAlign(CENTER, CENTER);
@@ -17,7 +17,7 @@ function Boton(px, py, tamx, tamy, radio, texto) {
   if (overMouse(px, py, tamx, tamy)) {
     fill(255);
   } else {
-    fill(240, 206, 228, 180);
+    fill(240, 206, 228, 140);
   }
   noStroke();
   rect(px, py, tamx, tamy, radio);

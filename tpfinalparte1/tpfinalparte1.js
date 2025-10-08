@@ -1,7 +1,8 @@
 let imagen=[];
 let estado=0;
 let escobi, creditos;
-let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede dejar su cuerpo y habitar en animales, personas e incluso el viento. Sueña con experimentar el amor humano, pero su familia se lo prohíbe ya que pone en riesgo sus poderes.', 'Una noche de primavera, Cecy encuentra la oportunidad de vivir lo prohibido. Descubre a Ann, una joven del pueblo, a través de ella, podría experimentar lo que significa amar.', 'Cecy se queda sola y triste. Comprende que nunca podrá conocer el amor humano.', 'Dentro del cuerpo de Ann, Cecy conoce a Tom, un joven que trabaja en la granja. Ann lo ignora, pero Cecy se enamora de él.'];
+let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede dejar su cuerpo y habitar en animales, personas e incluso el viento. Sueña con experimentar el amor humano, pero su familia se lo prohíbe ya que pone en riesgo sus poderes.', 'Una noche de primavera, Cecy encuentra la oportunidad de vivir lo prohibido. Descubre a Ann, una joven del pueblo, a través de ella, podría experimentar lo que significa amar.', 'Cecy se queda sola y triste. Comprende que nunca podrá conocer el amor humano.', 'Dentro del cuerpo de Ann, Cecy conoce a Tom, un joven que trabaja en la granja. Ann lo ignora, pero Cecy se enamora de él.',
+'Tom nota a Ann diferente, por lo que decide invitarla a un baile. Cecy estalla de felicidad, pero Ann no quiere ir.'];
 function preload() {
   escobi = loadImage ('data/escobi.png');
   creditos = loadImage('data/creditos.png');
@@ -40,20 +41,30 @@ function draw() {
 
   if (estado===3) { // Conocemos a Ann
     fondo1boton(imagen[2], 15, 5, 610, 80, 20, frases[1], 600, 200);
-      Boton(20, 410, 220, 50, 20, 'Escuchar a sus padres');
+    Boton(20, 410, 220, 50, 20, 'Escuchar a sus padres');
     Boton(420, 410, 200, 50, 20, 'Entrar al cuerpo');
   }
 
   if (estado===4) { // Primera decision, Cecy llorando
-    image( imagen [3], 0, 0);
+    fondo1boton(imagen[3], 15, 350, 610, 60, 20, frases[2], 600, 200)
+    Boton(100, 420, 220, 50, 20, 'Aceptarlo');
+    Boton(340, 420, 200, 50, 20, 'Arriesgarse igualmente'); //lo agregue recien
+  }
+
+  if (estado===60) { // Final 1
+    image(imagen[3], 0, 0);
+    Boton(420, 420, 210, 50, 20, 'Volver al inicio');
   }
 
   if (estado===5) { // Conocemos a Tom
-    image( imagen [4], 0, 0);
+    fondo1boton(imagen[4], 15, 360, 610, 60, 20, frases[3], 600, 200)
+    Boton(width/2-50, 425, 100, 50, 20, 'Avanzar');
   }
 
   if (estado===6) { // Tom la nota distinta a Ann
-    image( imagen [5], 0, 0);
+    fondo1boton(imagen[5], 15, 355, 610, 60, 20, frases[4], 600, 200)
+    Boton(15, 420, 280, 50, 20, 'Respetar a Ann y rechazar a Tom');
+    Boton(415, 420, 210, 50, 20, 'Ignorar a Ann y aceptar');
   }
 
   if (estado===7) { // Cecy y Ann enojadas porque no quiso ir al baile
@@ -123,4 +134,32 @@ function mousePressed() {
     }
   }
 
+  if (estado === 4) {
+    if (overMouse(100, 420, 220, 50)) {
+      estado = 60;
+    } else if (overMouse(340, 420, 200, 50)) {
+      estado = 5;
+    }
+  }
+
+  if (estado === 60) {
+    if (overMouse(420, 420, 210, 50)) {
+      estado = 0;
+    }
+  }
+  
+    if (estado === 5) {
+    if (overMouse(width/2-50, 425, 100, 50)) {
+      estado = 6;
+    }
+  }
+  
+  if (estado === 6) {
+    if (overMouse(15, 420, 280, 50)) {
+      estado = 7;
+    } else if (overMouse(415, 420, 210, 50)) {
+      estado = 8;
+    }
+  }
+  
 }
