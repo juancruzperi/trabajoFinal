@@ -4,7 +4,7 @@ let cambio=1;
 let fondo, magic;
 let escobi, creditos, sonidon, sonidoff;
 let frases=['Ella es Cecy Elliot, una bruja de 17 años con un don único: puede dejar su cuerpo y habitar en animales, personas e incluso el viento. Sueña con experimentar el amor humano, pero su familia se lo prohíbe ya que pone en riesgo sus poderes.', 'Una noche de primavera, Cecy encuentra la oportunidad de vivir lo prohibido. Descubre a Ann, una joven del pueblo, a través de ella, podría experimentar lo que significa amar.', 'Cecy se queda sola y triste. Comprende que nunca podrá conocer el amor humano.', 'Dentro del cuerpo de Ann, Cecy conoce a Tom, un joven que trabaja en la granja. Ann lo ignora, pero Cecy se enamora de él.',
-  'Tom nota a Ann diferente, por lo que decide invitarla a un baile. Cecy estalla de felicidad, pero Ann no quiere ir.', 'Cecy se enoja porque Ann no quiere cumplirle el sue;o y jura venganza'];
+  'Tom nota a Ann diferente, por lo que decide invitarla a un baile. Cecy estalla de felicidad, pero Ann no quiere ir.', 'Cecy se enoja porque Ann no quiere cumplirle el sueño y jura venganza'];
 function preload() {
   escobi = loadImage ('data/escobi.png');
   creditos = loadImage('data/creditos.png');
@@ -121,13 +121,13 @@ function mousePressed() {
   //mecanismo de sacar y poner sonido de fondo
   if (overMouse(0, 0, 40, 40)) {
     cambio ++;
-  }
-  if (overMouse(0, 0, 40, 40) && cambio %2===0) { //si esta sobre el boton sonido y ademas es par
+  if ( cambio %2===0) { //si esta sobre el boton sonido y ademas es par
     fondo.amp(0.1); 
     fondo.play();
     image (sonidoff, 0, 0, 40, 40);// no se por que esta no anda
-  } else if (overMouse(0, 0, 40, 40)){ //tiene que estar sobre boton sonido
+  } else { //tiene que estar sobre boton sonido
     fondo.stop();
+  }
   }
 
 
@@ -221,3 +221,4 @@ function mousePressed() {
   
   
 }
+
