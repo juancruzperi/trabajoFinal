@@ -17,7 +17,7 @@ function preload() {
   for (let i=0; i<15; i++) {
     imagen[i]=loadImage('data/'+i+'.png');
   }
-}
+}    
 
 function setup() {
   createCanvas(640, 480);
@@ -39,77 +39,47 @@ function draw() {
   }
   //fondo1boton(imagen, pxt, pyt, tamx, tamy, radio, texto, anchoc, altoc)
 
-  if (estado===1) { // Presentacion de Cecy
+  else if (estado===1) { // Presentacion de Cecy
     fondo1boton(imagen[1], 15, 300, 610, 120, 20, frases[0], 600, 200);
     Boton(width/2-50, 425, 100, 50, 20, 'Avanzar');
-  }
-
-  if (estado===2) { // Creditos
+  } else if (estado===2) { // Creditos
     image( creditos, 0, 0);
-  }
-
-  if (estado===3) { // Conocemos a Ann
+  } else if (estado===3) { // Conocemos a Ann
     fondo1boton(imagen[2], 15, 5, 610, 80, 20, frases[1], 600, 200);
     Boton(20, 410, 220, 50, 20, 'Escuchar a sus padres');
     Boton(420, 410, 200, 50, 20, 'Entrar al cuerpo');
-  }
-
-  if (estado===4) { // Primera decision, Cecy llorando
+  } else if (estado===4) { // Primera decision, Cecy llorando
     fondo1boton(imagen[3], 15, 350, 610, 60, 20, frases[2], 600, 200)
       Boton(100, 420, 220, 50, 20, 'Aceptarlo');
     Boton(340, 420, 200, 50, 20, 'Arriesgarse igualmente'); //lo agregue recien
-  }
-
-  if (estado===60) { // Final 1
+  } else if (estado===60) { // Final 1
     image(imagen[3], 0, 0);
     Boton(420, 420, 210, 50, 20, 'Volver al inicio');
-  }
-
-  if (estado===5) { // Conocemos a Tom
+  } else if (estado===5) { // Conocemos a Tom
     fondo1boton(imagen[4], 15, 360, 610, 60, 20, frases[3], 600, 200)
       Boton(width/2-50, 425, 100, 50, 20, 'Avanzar');
-  }
-
-  if (estado===6) { // Tom la nota distinta a Ann
+  } else if (estado===6) { // Tom la nota distinta a Ann
     fondo1boton(imagen[5], 15, 355, 610, 60, 20, frases[4], 600, 200)
-    Boton(15, 420, 280, 50, 20, 'Respetar a Ann y rechazar a Tom');
+      Boton(15, 420, 280, 50, 20, 'Respetar a Ann y rechazar a Tom');
     Boton(415, 420, 210, 50, 20, 'Ignorar a Ann y aceptar');
-  }
-
-  if (estado===7) { // Cecy y Ann enojadas porque no quiso ir al baile
+  } else if (estado===7) { // Cecy y Ann enojadas porque no quiso ir al baile
     fondo1boton(imagen[6], 15, 360, 610, 60, 20, frases[5], 600, 200)
       Boton(width/2-105, 425, 210, 50, 20, 'Volver al inicio');
-  }
-
-  if (estado===8) { // Conmo comportarse en el baile?
+  } else if (estado===8) { // Conmo comportarse en el baile?
     image( imagen [7], 0, 0);
-  }
-
-  if (estado===9) { //Cecy entiende que Tom ama a Ann
+  } else if (estado===9) { //Cecy entiende que Tom ama a Ann
     image( imagen [8], 0, 0);
-  }
-
-  if (estado===10) { // Cecy renuncia al cuerpo de Ann
+  } else if (estado===10) { // Cecy renuncia al cuerpo de Ann
     image( imagen [9], 0, 0);
-  }
-
-  if (estado===11) { // Decision no disimular, Tom lo nota
+  } else if (estado===11) { // Decision no disimular, Tom lo nota
     image( imagen [10], 0, 0);
-  }
-
-  if (estado===12) { // Cecy confiesa que es una bruja
+  } else if (estado===12) { // Cecy confiesa que es una bruja
     image( imagen [11], 0, 0);
-  }
-
-  if (estado===13) { // Cecy y Tom se enamoran
+  } else if (estado===13) { // Cecy y Tom se enamoran
     image( imagen [12], 0, 0);
-  }
-
-  if (estado===14) { // Cecy es rechazada y muere de tristeza
+  } else if (estado===14) { // Cecy es rechazada y muere de tristeza
     image( imagen [13], 0, 0);
-  }
-
-  if (estado===15) { // Cecy renuncia al amor
+  } else if (estado===15) { // Cecy renuncia al amor
     image( imagen [14], 0, 0);
   }
   image (sonidon, 0, 0, 40, 40);
@@ -117,17 +87,17 @@ function draw() {
 }
 
 function mousePressed() {
-
+  print("Estado antes del click:", estado);
   //mecanismo de sacar y poner sonido de fondo
   if (overMouse(0, 0, 40, 40)) {
     cambio ++;
-  if ( cambio %2===0) { //si esta sobre el boton sonido y ademas es par
-    fondo.amp(0.1); 
-    fondo.play();
-    image (sonidoff, 0, 0, 40, 40);// no se por que esta no anda
-  } else { //tiene que estar sobre boton sonido
-    fondo.stop();
-  }
+    if ( cambio %2===0) { //si esta sobre el boton sonido y ademas es par
+      fondo.amp(0.1);
+      fondo.play();
+      image (sonidoff, 0, 0, 40, 40);// no se por que esta no anda
+    } else { //tiene que estar sobre boton sonido
+      fondo.stop();
+    }
   }
 
 
@@ -137,10 +107,12 @@ function mousePressed() {
       estado=1;
       magic.amp(0.3);
       magic.play();
+      return; //lo que hace es cortar la ejecucion del estado
     } else if (overMouse(376, 266, 161, 42)) {
       estado=2;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
 
@@ -149,6 +121,7 @@ function mousePressed() {
       estado=0;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
   if (estado === 1) {
@@ -156,6 +129,7 @@ function mousePressed() {
       estado = 3;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
 
@@ -164,10 +138,12 @@ function mousePressed() {
       estado = 4;
       magic.amp(0.3);
       magic.play();
+      return;
     } else if (overMouse(420, 410, 200, 50)) {
       estado = 5;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
 
@@ -176,10 +152,12 @@ function mousePressed() {
       estado = 60;
       magic.amp(0.3);
       magic.play();
+      return;
     } else if (overMouse(340, 420, 200, 50)) {
       estado = 5;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
 
@@ -188,6 +166,7 @@ function mousePressed() {
       estado = 0;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
 
@@ -196,6 +175,7 @@ function mousePressed() {
       estado = 6;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
 
@@ -204,21 +184,21 @@ function mousePressed() {
       estado = 7;
       magic.amp(0.3);
       magic.play();
+      return;
     } else if (overMouse(415, 420, 210, 50)) {
       estado = 8;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
-  
-    if (estado === 7) {
+
+  if (estado === 7) {
     if (overMouse(width/2-50, 425, 100, 50)) {
       estado = 0;
       magic.amp(0.3);
       magic.play();
+      return;
     }
   }
-  
-  
 }
-
