@@ -1,3 +1,5 @@
+//Falta: vidas, agregar puerta, ganar, perder, estados, iniciar y reiniciar
+
 class Juego{
   
 constructor(){
@@ -175,3 +177,4 @@ this.px=430;
 }
 
 }
+
