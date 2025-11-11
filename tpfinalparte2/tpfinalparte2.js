@@ -1,7 +1,8 @@
 //Comision 1
 //Hanna Mendoza y Juan Cruz Peri
 let juego;
-let fondo, Annimg, Cecyimg, hechizo, comenzar;
+let fondo, Annimg, Cecyimg, hechizo, portal, comenzar;
+let vidas, novida;
 let cancion;
 
 function preload (){
@@ -9,7 +10,10 @@ fondo = loadImage('data/fondo.jpg');
 Annimg = loadImage('data/Annimg.png');
 Cecyimg = loadImage('data/Cecyimg.png');
 hechizo = loadImage('data/hechizo.png');
+portal = loadImage('data/portal.png');
 comenzar = loadImage('data/comenzar.png');
+vidas = loadImage('data/corazon.png');
+novida = loadImage('data/corazonvacio.png');
 cancion = loadSound('data/cancion.mp3');
 }
 
