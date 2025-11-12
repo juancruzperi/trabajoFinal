@@ -10,8 +10,7 @@ fondo = loadImage('data/fondo.jpg');
 Annimg = loadImage('data/Annimg.png');
 Cecyimg = loadImage('data/Cecyimg.png');
 hechizo = loadImage('data/hechizo.png');
-portal = loadImage('data/portal.png');
-comenzar = loadImage('data/comenzar.png');
+portal = loadImage('data/portal.gif');
 vidas = loadImage('data/corazon.png');
 novida = loadImage('data/corazonvacio.png');
 cancion = loadSound('data/cancion.mp3');
@@ -25,6 +24,7 @@ juego = new Juego();
 
 function draw() {
 image(fondo, 0,0);
+image(portal, 560,200,100,150);
 juego.mostrar();
 }
 

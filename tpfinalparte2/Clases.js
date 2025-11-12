@@ -28,13 +28,23 @@ colision(){
 //ellipse(this.Ann.px + this.Ann.tam/2, this.Ann.py + this.Ann.tam/2, 10);
 //ellipse(this.Cecy.Hechizo.px + 20, this.Cecy.py + 50, 10);
 
-let Distancia = dist ( this.Ann.px + this.Ann.tam/2, this.Ann.py + this.Ann.tam/2, this.Cecy.Hechizo.px + 20, this.Cecy.py + 50);
-if (Distancia <60){
+if (this.Cecy.Hechizo.contacto(this.Ann) && this.Vidas.vidaperdida===true) {
 this.Vidas.vida-=1;
-  fill(255,0,0);
-  textSize(100);
-text("toco", 300,200);
+this.Vidas.vidaperdida = false;
 }
+if (!this.Cecy.Hechizo.contacto(this.Ann)) {
+this.Vidas.vidaperdida = true;
+}
+
+
+//let Distancia = dist ( this.Ann.px + this.Ann.tam/2, this.Ann.py + this.Ann.tam/2, this.Cecy.Hechizo.px + 20, this.Cecy.py + 50);
+//if (Distancia <60 && this.Vidas.vidaperdida===true){
+//this.Vidas.vida-=1;
+//this.Vidas.vidaperdida = false;
+//}
+//if (Distancia >= 60) {
+//this.Vidas.vidaperdida = true;
+//}
 
 }// llave metodo colision
 
@@ -113,7 +123,7 @@ moverAbajo(){
 class Cecy{//(Enemigo)
   
 constructor(){
-this.px = 520;
+this.px = 500;
 this.py = 30;
 this.alto = 150;
 this.baja = true;
@@ -123,7 +133,7 @@ this.Hechizo = new Hechizo();
 mostrar(){
 this.mover();
 image (Cecyimg, this.px, this.py, 100,this.alto);
-this.Hechizo.mostrar(this.py+35)
+this.Hechizo.mostrar(this.py+50)
 }
 
 mover(){
@@ -149,20 +159,31 @@ class Hechizo {
 
 constructor(){
 this.px = 430;
-this.baja = true;
+this.py = 0;
+this.tam = 80;
+this.alto = 18;
 }
 
 mostrar(py){
+this.py = py;
 this.disparo();
-image(hechizo, this.px, py, 80, 40);
+image(hechizo, this.px, this.py, this.tam, this.alto);
+noFill();
+quad(this.px, this.py, this.px+this.tam, this.py, this.px+this.tam, this.py+this.alto, this.px, this.py+this.alto);
 }
 
 disparo(){
-this.px -=5;
-if (this.px <= -100) {
+if (this.px <= -80) {
 this.px=430;
 }
+this.px -=5;
 }
+
+contacto(Ann, py) {
+    let contacto=this.px+this.tam > Ann.px && this.px < Ann.px + Ann.tam &&
+      this.py + this.alto > Ann.py && this.py < Ann.py + Ann.tam;
+    return contacto;
+  }
 
 }//no tocar
 
@@ -170,7 +191,7 @@ class Vidas {
   
 constructor(){
 this.vida = 5;
-
+this.vidaperdida = true;
 }
 
 mostrar(){
