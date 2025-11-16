@@ -294,7 +294,7 @@ image(hechizo, this.px, this.py, this.tam, this.alto);
 }
 
 disparo(){
-if (this.px <= -80) {
+if (this.px <= -this.tam) {
 this.px=430;
 }
 this.px -=10;

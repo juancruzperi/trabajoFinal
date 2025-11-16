@@ -4,7 +4,7 @@ let juego;
 let estado=[];
 let fondo, Annimg, Cecyimg, hechizo, portal, reloj;
 let vidas, novida;
-let cancion, perder, perdervida;
+let cancion, perdervida;
 
 function preload (){
 fondo = loadImage('data/fondo.jpg');
@@ -16,7 +16,6 @@ vidas = loadImage('data/corazon.png');
 novida = loadImage('data/corazonvacio.png');
 reloj = loadImage('data/reloj.png');
 cancion = loadSound('data/cancion.mp3');
-perder = loadSound('data/sonidoPerder.mp3');
 perdervida = loadSound('data/perdervida.mp3');
 
   for (let i=0; i<5; i++) {
